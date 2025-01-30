@@ -1,10 +1,12 @@
 <h1>Github Addition</h1>
-Beat Clicker is a game made for the 2024 Rhythm Game Jam!
-This upload is much in the future from the release of the game, but I wanted to provide an upload as a record of sorts and forgot about doing that up until right now.
-<h2>How To Download</h1>
+<p>Beat Clicker is a game made for the 2024 Rhythm Game Jam! This upload is much in the future from the release of the game, but I wanted to provide an upload as a record of sorts and forgot about doing that up until right now.</p>
+<p>That being said, this is only the open source part of the code, the full game release is too large to add to this repo. If you want to download it and play for yourself:</p>
+<h3>How To Play</h3>
+<p>Navigate over to the <a href="https://huntingautumn.itch.io/beatclicker">itch page</a> for the project and follow the instructions posted there. You do have to download the game to your computer, I couldn't get a web release working properly.</p>
+<p>While you're there, you could also look at my other projects! I'll hopefully have much more by the time you're reading this :D</p>
+<p>And with all that covered, here is the orignal description of the game on <a href="https://itch.io/">itch.io</a></p>
 
-
-<h2>Beat Clicker (Rhythm Jam 2024)</h2>
+<h1>Beat Clicker (Rhythm Jam 2024)</h1>
 <p>Beat Clicker is my first game ever completed, as well as my first game jam ever participated in!</p>
 <p>Beat Clicker is a rhythm game where you move your player along three tracks to hit notes on beat, partially inspired by the Muffet boss fight from Undertale.</p>
 <p>Move between three tracks to hit the notes on time, or dodge the barriers that appear on the track. Make sure you hold on the hold notes!<br></p>
