@@ -1,0 +1,107 @@
+[gd_scene load_steps=8 format=3 uid="uid://5dlp26avtxcb"]
+
+[ext_resource type="FontFile" uid="uid://bnhr6cn2faw3h" path="res://Fonts/UASQUARE.TTF" id="1_pitr2"]
+[ext_resource type="Script" path="res://Game/Scripts/DeathScreen.gd" id="1_rq41x"]
+[ext_resource type="Texture2D" uid="uid://bnro5q2aigqqq" path="res://Menu/Buttons/Sprites/Blank-Menu-Button.png" id="2_elj6l"]
+[ext_resource type="LabelSettings" uid="uid://j5jf5s3hx1os" path="res://Fonts/SettingsLabelSettings.tres" id="3_la5dx"]
+[ext_resource type="Script" path="res://Game/Scripts/RestartButton.gd" id="3_lhyao"]
+[ext_resource type="AudioStream" uid="uid://bmj5uanadfwk6" path="res://Audio/Music/MainM.ogg" id="6_d1ake"]
+
+[sub_resource type="LabelSettings" id="LabelSettings_dxt6e"]
+font = ExtResource("1_pitr2")
+font_size = 200
+
+[node name="DeathScreen" type="CanvasLayer"]
+script = ExtResource("1_rq41x")
+
+[node name="ColorRect" type="ColorRect" parent="."]
+offset_right = 1152.0
+offset_bottom = 648.0
+color = Color(0.0431373, 0.0431373, 0.0431373, 1)
+
+[node name="Label" type="Label" parent="."]
+offset_right = 1152.0
+offset_bottom = 224.0
+text = "YOU DIED :( "
+label_settings = SubResource("LabelSettings_dxt6e")
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="Restart" type="TextureButton" parent="."]
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -224.0
+offset_top = 96.0
+offset_right = 224.0
+offset_bottom = 192.0
+grow_horizontal = 2
+grow_vertical = 2
+scale = Vector2(0.75, 0.75)
+pivot_offset = Vector2(224, 48)
+size_flags_horizontal = 4
+size_flags_vertical = 4
+script = ExtResource("3_lhyao")
+
+[node name="TextureRect" type="TextureRect" parent="Restart"]
+layout_mode = 0
+offset_right = 448.0
+offset_bottom = 96.0
+texture = ExtResource("2_elj6l")
+
+[node name="Label" type="Label" parent="Restart"]
+layout_mode = 0
+offset_right = 448.0
+offset_bottom = 96.0
+text = "Restart Level"
+label_settings = ExtResource("3_la5dx")
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="Menu" type="TextureButton" parent="."]
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -224.0
+offset_top = 180.0
+offset_right = 224.0
+offset_bottom = 276.0
+grow_horizontal = 2
+grow_vertical = 2
+scale = Vector2(0.75, 0.75)
+pivot_offset = Vector2(224, 48)
+size_flags_horizontal = 4
+size_flags_vertical = 4
+script = ExtResource("3_lhyao")
+
+[node name="TextureRect" type="TextureRect" parent="Menu"]
+layout_mode = 0
+offset_right = 448.0
+offset_bottom = 96.0
+texture = ExtResource("2_elj6l")
+
+[node name="Label" type="Label" parent="Menu"]
+layout_mode = 0
+offset_right = 448.0
+offset_bottom = 96.0
+text = "Quit to Menu"
+label_settings = ExtResource("3_la5dx")
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="AudioStreamPlayer2D" type="AudioStreamPlayer2D" parent="."]
+stream = ExtResource("6_d1ake")
+autoplay = true
+
+[node name="SFXPlayer" type="AudioStreamPlayer2D" parent="."]
+
+[connection signal="mouse_entered" from="Restart" to="Restart" method="_on_mouse_entered"]
+[connection signal="mouse_exited" from="Restart" to="Restart" method="_on_mouse_exited"]
+[connection signal="pressed" from="Restart" to="." method="_on_restart_pressed"]
+[connection signal="mouse_entered" from="Menu" to="Menu" method="_on_mouse_entered"]
+[connection signal="mouse_exited" from="Menu" to="Menu" method="_on_mouse_exited"]
+[connection signal="pressed" from="Menu" to="." method="_on_menu_pressed"]

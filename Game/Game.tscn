@@ -1,0 +1,352 @@
+[gd_scene load_steps=21 format=3 uid="uid://bs0p0vv6bg1qg"]
+
+[ext_resource type="Script" path="res://Game/Scripts/Game.gd" id="1_ma7hf"]
+[ext_resource type="PackedScene" uid="uid://cuyd1qv0pn26e" path="res://addons/midi/MidiPlayer.tscn" id="2_exxxi"]
+[ext_resource type="Script" path="res://Game/Follow Paths/NoteFollow.gd" id="4_mmrkj"]
+[ext_resource type="PackedScene" uid="uid://bpcvg7rfsbom3" path="res://Game/Player/little_guy.tscn" id="5_x3x3w"]
+[ext_resource type="Texture2D" uid="uid://dsqcms5p46uo6" path="res://Menu/Sprites/Menu-Particles.png" id="6_0313h"]
+[ext_resource type="FontFile" uid="uid://bnhr6cn2faw3h" path="res://Fonts/UASQUARE.TTF" id="7_ttlt4"]
+[ext_resource type="Script" path="res://Game/Scripts/ProgressBarScript.gd" id="8_t2nty"]
+[ext_resource type="LabelSettings" uid="uid://b6va646nouroo" path="res://Fonts/ComboLabelSettings.tres" id="9_ajo2p"]
+[ext_resource type="LabelSettings" uid="uid://o0heu2j8tid6" path="res://Fonts/CreditLabelSettings.tres" id="10_l5i6d"]
+[ext_resource type="Script" path="res://Game/Scripts/Camera2D.gd" id="11_0gxav"]
+[ext_resource type="Script" path="res://Game/Scripts/HealthBar.gd" id="11_xcmdq"]
+[ext_resource type="AudioStream" uid="uid://dakxxt3di1udr" path="res://Audio/Music/Tutorial.ogg" id="12_ca38q"]
+
+[sub_resource type="Curve2D" id="Curve2D_5aiwf"]
+_data = {
+"points": PackedVector2Array(0, 0, 0, 0, 0, 192, 0, 0, 0, 0, 160000, 192)
+}
+point_count = 2
+
+[sub_resource type="GDScript" id="GDScript_l4l0x"]
+script/source = "extends Path2D
+
+
+# Called when the node enters the scene tree for the first time.
+func _ready():
+	pass
+
+# Called every frame. 'delta' is the elapsed time since the previous frame.
+func _process(delta):
+	pass
+
+func _draw():
+	#draw_polyline(self.curve.get_baked_points(), Color.WHITE, 5, true)
+	pass 
+"
+
+[sub_resource type="Curve2D" id="Curve2D_cvx3u"]
+_data = {
+"points": PackedVector2Array(0, 0, 0, 0, 0, 320, 0, 0, 333.782, -146.083, 160000, 320)
+}
+point_count = 2
+
+[sub_resource type="Curve2D" id="Curve2D_h8xkw"]
+_data = {
+"points": PackedVector2Array(0, 0, 0, 0, 0, 448, 0, 0, 0, 0, 160000, 448)
+}
+point_count = 2
+
+[sub_resource type="CanvasItemMaterial" id="CanvasItemMaterial_4qjmq"]
+particles_animation = true
+particles_anim_h_frames = 7
+particles_anim_v_frames = 1
+particles_anim_loop = false
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_w55i7"]
+bg_color = Color(0.0431373, 0.0431373, 0.0431373, 1)
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_h05fa"]
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_xlln5"]
+bg_color = Color(0.823529, 0.345098, 0.596078, 1)
+
+[node name="Tutorial" type="Node2D"]
+script = ExtResource("1_ma7hf")
+
+[node name="GodotMidiPlayer" parent="." instance=ExtResource("2_exxxi")]
+file = "res://Audio/Music/Midi/Tut.mid"
+
+[node name="Tracks" type="Node2D" parent="."]
+
+[node name="Track1" type="Path2D" parent="Tracks"]
+curve = SubResource("Curve2D_5aiwf")
+script = SubResource("GDScript_l4l0x")
+
+[node name="PathFollow1" type="PathFollow2D" parent="Tracks/Track1"]
+position = Vector2(0, 192)
+rotates = false
+
+[node name="Track3Area" type="Area2D" parent="Tracks/Track1"]
+position = Vector2(0, 192)
+collision_layer = 512
+collision_mask = 512
+
+[node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="Tracks/Track1/Track3Area"]
+polygon = PackedVector2Array(0, -8, 0, 8, 160000, 8, 160000, -8)
+
+[node name="Placer" type="PathFollow2D" parent="Tracks/Track1"]
+position = Vector2(0, 192)
+
+[node name="NoteFollow" type="PathFollow2D" parent="Tracks/Track1" node_paths=PackedStringArray("asp")]
+position = Vector2(160000, 192)
+progress = 160000.0
+script = ExtResource("4_mmrkj")
+asp = NodePath("../../../Camera2D/AudioStreamPlayer2D")
+
+[node name="Track2" type="Path2D" parent="Tracks"]
+curve = SubResource("Curve2D_cvx3u")
+script = SubResource("GDScript_l4l0x")
+
+[node name="PathFollow2" type="PathFollow2D" parent="Tracks/Track2"]
+position = Vector2(0, 320)
+rotates = false
+
+[node name="LittleGuy" parent="Tracks/Track2/PathFollow2" node_paths=PackedStringArray("game") instance=ExtResource("5_x3x3w")]
+game = NodePath("../../../..")
+
+[node name="Track2Area" type="Area2D" parent="Tracks/Track2"]
+position = Vector2(0, 320)
+collision_layer = 512
+collision_mask = 512
+
+[node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="Tracks/Track2/Track2Area"]
+polygon = PackedVector2Array(0, -8, 0, 8, 160000, 8, 160000, -8)
+
+[node name="Placer" type="PathFollow2D" parent="Tracks/Track2"]
+position = Vector2(0, 320)
+
+[node name="Track3" type="Path2D" parent="Tracks"]
+curve = SubResource("Curve2D_h8xkw")
+script = SubResource("GDScript_l4l0x")
+
+[node name="PathFollow3" type="PathFollow2D" parent="Tracks/Track3"]
+position = Vector2(0, 448)
+rotates = false
+
+[node name="Track1Area" type="Area2D" parent="Tracks/Track3"]
+position = Vector2(0, 448)
+collision_layer = 512
+collision_mask = 512
+
+[node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="Tracks/Track3/Track1Area"]
+polygon = PackedVector2Array(0, -8, 0, 8, 160000, 8, 160000, -8)
+
+[node name="Placer" type="PathFollow2D" parent="Tracks/Track3"]
+position = Vector2(0, 448)
+
+[node name="BackgroundLayer" type="CanvasLayer" parent="."]
+layer = -1
+
+[node name="Background" type="ColorRect" parent="BackgroundLayer"]
+offset_right = 1152.0
+offset_bottom = 648.0
+mouse_filter = 2
+color = Color(0.0431373, 0.0431373, 0.0431373, 1)
+metadata/_edit_use_anchors_ = true
+
+[node name="Border" type="Polygon2D" parent="BackgroundLayer"]
+color = Color(0.0431373, 0.0431373, 0.0431373, 1)
+polygon = PackedVector2Array(0, 0, 0, 648, 1152, 648, 1152, 0, 0, 0, 8, 8, 1144, 8, 1144, 640, 8, 640, 8, 8)
+
+[node name="CPUParticles2D" type="CPUParticles2D" parent="BackgroundLayer"]
+light_mask = 2
+visibility_layer = 2
+material = SubResource("CanvasItemMaterial_4qjmq")
+position = Vector2(576, 328)
+amount = 24
+speed_scale = 0.4
+texture = ExtResource("6_0313h")
+emission_shape = 3
+emission_rect_extents = Vector2(512, 256)
+direction = Vector2(-1, 0)
+spread = 0.0
+gravity = Vector2(0, 0)
+initial_velocity_min = 100.0
+initial_velocity_max = 100.0
+anim_speed_min = 1.0
+anim_speed_max = 1.0
+
+[node name="HUD" type="CanvasLayer" parent="."]
+
+[node name="ProgressBar" type="ProgressBar" parent="HUD" node_paths=PackedStringArray("asp")]
+light_mask = 2
+visibility_layer = 2
+offset_left = 128.0
+offset_top = 45.0
+offset_right = 1024.0
+offset_bottom = 64.0
+theme_override_fonts/font = ExtResource("7_ttlt4")
+theme_override_styles/background = SubResource("StyleBoxFlat_w55i7")
+theme_override_styles/fill = SubResource("StyleBoxFlat_h05fa")
+script = ExtResource("8_t2nty")
+asp = NodePath("../../Camera2D/AudioStreamPlayer2D")
+metadata/_edit_use_anchors_ = true
+
+[node name="ComboScore" type="Label" parent="HUD"]
+light_mask = 2
+visibility_layer = 2
+offset_left = 336.0
+offset_top = 496.0
+offset_right = 474.0
+offset_bottom = 551.0
+pivot_offset = Vector2(72, 24)
+text = "COMBO:"
+label_settings = ExtResource("9_ajo2p")
+horizontal_alignment = 1
+vertical_alignment = 1
+metadata/_edit_use_anchors_ = true
+
+[node name="Combo" type="Label" parent="HUD/ComboScore"]
+layout_mode = 1
+anchors_preset = -1
+anchor_right = 1.275
+anchor_bottom = 1.0
+offset_left = 138.0
+offset_right = 2.04999
+text = "0
+"
+label_settings = ExtResource("9_ajo2p")
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="CurrentScore" type="Label" parent="HUD"]
+offset_left = 64.0
+offset_top = 72.0
+offset_right = 144.0
+offset_bottom = 105.0
+text = "Score:"
+label_settings = ExtResource("10_l5i6d")
+
+[node name="Score" type="Label" parent="HUD/CurrentScore"]
+layout_mode = 0
+offset_left = 80.0
+offset_right = 144.0
+offset_bottom = 32.0
+text = "0"
+label_settings = ExtResource("10_l5i6d")
+
+[node name="Scores" type="Control" parent="HUD"]
+layout_mode = 3
+anchors_preset = 0
+offset_right = 40.0
+offset_bottom = 40.0
+
+[node name="PerfectScore" type="Label" parent="HUD/Scores"]
+layout_mode = 0
+offset_left = 264.0
+offset_top = 72.0
+offset_right = 368.0
+offset_bottom = 105.0
+text = "Perfect:"
+label_settings = ExtResource("10_l5i6d")
+
+[node name="Score" type="Label" parent="HUD/Scores/PerfectScore"]
+layout_mode = 0
+offset_left = 112.0
+offset_right = 176.0
+offset_bottom = 33.0
+text = "0"
+label_settings = ExtResource("10_l5i6d")
+
+[node name="GoodScore" type="Label" parent="HUD/Scores"]
+layout_mode = 0
+offset_left = 512.0
+offset_top = 72.0
+offset_right = 616.0
+offset_bottom = 105.0
+text = "Good:"
+label_settings = ExtResource("10_l5i6d")
+
+[node name="Score" type="Label" parent="HUD/Scores/GoodScore"]
+layout_mode = 0
+offset_left = 72.0
+offset_right = 136.0
+offset_bottom = 33.0
+text = "0"
+label_settings = ExtResource("10_l5i6d")
+
+[node name="OkayScore" type="Label" parent="HUD/Scores"]
+layout_mode = 0
+offset_left = 728.0
+offset_top = 72.0
+offset_right = 832.0
+offset_bottom = 105.0
+text = "Okay:"
+label_settings = ExtResource("10_l5i6d")
+
+[node name="Score" type="Label" parent="HUD/Scores/OkayScore"]
+layout_mode = 0
+offset_left = 72.0
+offset_right = 136.0
+offset_bottom = 33.0
+text = "0"
+label_settings = ExtResource("10_l5i6d")
+
+[node name="MissedScore" type="Label" parent="HUD/Scores"]
+layout_mode = 0
+offset_left = 976.0
+offset_top = 72.0
+offset_right = 1080.0
+offset_bottom = 105.0
+text = "Missed:"
+label_settings = ExtResource("10_l5i6d")
+
+[node name="Score" type="Label" parent="HUD/Scores/MissedScore"]
+layout_mode = 0
+offset_left = 96.0
+offset_right = 160.0
+offset_bottom = 33.0
+text = "0"
+label_settings = ExtResource("10_l5i6d")
+
+[node name="HealthBar" type="ProgressBar" parent="HUD"]
+light_mask = 2
+visibility_layer = 2
+anchors_preset = -1
+anchor_top = -0.148148
+anchor_bottom = -0.140432
+offset_left = 128.0
+offset_top = 672.0
+offset_right = 1024.0
+offset_bottom = 691.0
+theme_override_fonts/font = ExtResource("7_ttlt4")
+theme_override_styles/background = SubResource("StyleBoxFlat_w55i7")
+theme_override_styles/fill = SubResource("StyleBoxFlat_xlln5")
+show_percentage = false
+script = ExtResource("11_xcmdq")
+metadata/_edit_use_anchors_ = true
+
+[node name="Camera2D" type="Camera2D" parent="." node_paths=PackedStringArray("player")]
+position = Vector2(576, 324)
+script = ExtResource("11_0gxav")
+player = NodePath("../Tracks/Track2/PathFollow2/LittleGuy")
+
+[node name="AudioStreamPlayer2D" type="AudioStreamPlayer2D" parent="Camera2D"]
+stream = ExtResource("12_ca38q")
+bus = &"Music"
+
+[node name="Node2D" type="Node2D" parent="."]
+z_index = -5
+
+[node name="LineOne" type="Line2D" parent="Node2D"]
+points = PackedVector2Array(-500, 192, 2000, 192)
+width = 5.0
+
+[node name="LineTwo" type="Line2D" parent="Node2D"]
+points = PackedVector2Array(-500, 448, 2000, 448)
+width = 5.0
+
+[node name="LineThree" type="Line2D" parent="Node2D"]
+points = PackedVector2Array(-500, 320, 2000, 320)
+width = 5.0
+
+[connection signal="damage_taken" from="." to="HUD/HealthBar" method="_on_damage_taken"]
+[connection signal="health_gained" from="." to="HUD/HealthBar" method="_on_health_gained"]
+[connection signal="level_loaded" from="." to="Tracks/Track1/PathFollow1" method="_on_level_loaded"]
+[connection signal="level_loaded" from="." to="Tracks/Track2/PathFollow2" method="_on_level_loaded"]
+[connection signal="level_loaded" from="." to="Tracks/Track3/PathFollow3" method="_on_level_loaded"]
+[connection signal="parent_changed" from="Tracks/Track2/PathFollow2/LittleGuy" to="Camera2D" method="_on_little_guy_parent_changed"]
+[connection signal="player_clicked" from="Tracks/Track2/PathFollow2/LittleGuy" to="Camera2D" method="_on_little_guy_player_clicked"]
+[connection signal="finished" from="Camera2D/AudioStreamPlayer2D" to="." method="_on_asp_finished"]

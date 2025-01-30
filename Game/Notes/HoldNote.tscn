@@ -1,0 +1,75 @@
+[gd_scene load_steps=5 format=3 uid="uid://b8sylbsal5wgq"]
+
+[ext_resource type="Script" path="res://Game/Notes/HoldNote.gd" id="1_8ry6l"]
+[ext_resource type="LabelSettings" uid="uid://c6rwunq8vx24b" path="res://Fonts/MiniLabelSettings.tres" id="2_8ybeq"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_qt6kd"]
+size = Vector2(48, 40)
+
+[sub_resource type="GDScript" id="GDScript_jjyao"]
+script/source = "extends Polygon2D
+
+
+# Called when the node enters the scene tree for the first time.
+func _ready():
+	pass # Replace with function body.
+
+
+# Called every frame. 'delta' is the elapsed time since the previous frame.
+func _process(delta):
+	pass
+"
+
+[node name="HoldNote" type="Area2D" groups=["hold note"]]
+script = ExtResource("1_8ry6l")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+position = Vector2(0, -4)
+shape = SubResource("RectangleShape2D_qt6kd")
+
+[node name="HoldLine" type="Node2D" parent="."]
+position = Vector2(-24, 0)
+
+[node name="Line2D" type="Line2D" parent="HoldLine"]
+position = Vector2(8, 0)
+points = PackedVector2Array(-8, 0, 80, 0)
+default_color = Color(0.776471, 0.25098, 0.403922, 1)
+
+[node name="Polygon2D" type="Polygon2D" parent="HoldLine"]
+position = Vector2(88, 0)
+color = Color(0.509804, 0.168627, 0.211765, 1)
+polygon = PackedVector2Array(-12, -20, -12, 12, 20, 12, 20, 8, -8, 8, -8, -16, 16, -16, 16, 8, 20, 8, 20, -20)
+script = SubResource("GDScript_jjyao")
+
+[node name="Outline" type="Polygon2D" parent="HoldLine/Polygon2D"]
+position = Vector2(-88, 0)
+color = Color(0.796078, 0, 0.231373, 1)
+polygon = PackedVector2Array(72, -20, 72, 12, 76, 16, 108, 16, 112, 12, 112, -20, 108, -24, 76, -24, 72, -20, 108, -20, 108, 12, 76, 12, 76, -20)
+
+[node name="Shape" type="Node2D" parent="."]
+
+[node name="Polygon2D" type="Polygon2D" parent="Shape"]
+position = Vector2(-24, -24)
+color = Color(0.509804, 0.172549, 0.215686, 1)
+polygon = PackedVector2Array(32, 8, 32, 28, 28, 32, 8, 32, 8, 12, 12, 8, 12, 0, 0, 12, 0, 40, 28, 40, 40, 28, 40, 12, 56, -64, 40, -64, 24, 0, 12, 4, 12, 8)
+
+[node name="Outline" type="Polygon2D" parent="Shape"]
+color = Color(0.796078, 0, 0.231373, 1)
+polygon = PackedVector2Array(-24, -12, -12, -24, 4, -24, 0, -20, -12, -20, -20, -12, -20, 12, 4, 12, 12, 4, 12, -12, 28, -84, 16, -84, 4, -24, 0, -24, 12, -88, 32, -88, 16, -8, 16, 4, 4, 16, -24, 16)
+
+[node name="CanvasLayer" type="CanvasLayer" parent="."]
+
+[node name="Label" type="Label" parent="CanvasLayer"]
+anchors_preset = -1
+anchor_left = 0.187
+anchor_top = -0.375
+anchor_right = 0.187
+anchor_bottom = -0.375
+offset_left = -239.424
+offset_top = 187.0
+offset_right = -199.424
+offset_bottom = 210.0
+label_settings = ExtResource("2_8ybeq")
+metadata/_edit_use_anchors_ = true
+
+[node name="Timer" type="Timer" parent="."]

@@ -1,0 +1,15 @@
+[remap]
+
+importer="com.nlaha.godotmidi"
+type="MidiResource"
+uid="uid://8asim4r0wyur"
+path="res://.godot/imported/VerEASY.mid-c14db9d8ad995aee5e00b10855b1d054.res"
+
+[deps]
+
+source_file="res://Charts/VerEASY.mid"
+dest_files=["res://.godot/imported/VerEASY.mid-c14db9d8ad995aee5e00b10855b1d054.res"]
+
+[params]
+
+only_notes=false

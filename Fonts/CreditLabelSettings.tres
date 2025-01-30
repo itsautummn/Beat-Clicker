@@ -1,0 +1,7 @@
+[gd_resource type="LabelSettings" load_steps=2 format=3 uid="uid://o0heu2j8tid6"]
+
+[ext_resource type="FontFile" uid="uid://bnhr6cn2faw3h" path="res://Fonts/UASQUARE.TTF" id="1_ckcpi"]
+
+[resource]
+font = ExtResource("1_ckcpi")
+font_size = 30

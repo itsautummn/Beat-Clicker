@@ -1,0 +1,230 @@
+[gd_scene load_steps=25 format=3 uid="uid://bpcvg7rfsbom3"]
+
+[ext_resource type="Script" path="res://Game/Player/LittleGuy.gd" id="2_7lc4u"]
+[ext_resource type="Texture2D" uid="uid://dbxcghtu2cl1q" path="res://Game/Player/TPUp Animation.png" id="2_wq5nm"]
+[ext_resource type="Texture2D" uid="uid://coewry1mc3phn" path="res://Game/Player/TPDown Animation.png" id="3_b11ja"]
+[ext_resource type="Texture2D" uid="uid://5lf22hd8i7s3" path="res://Game/Player/Perf-Particles.png" id="4_mtj67"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_rg7iu"]
+size = Vector2(20, 16)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_55h0i"]
+size = Vector2(47.9992, 15.9998)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_36ras"]
+size = Vector2(68, 16)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_m53ni"]
+atlas = ExtResource("2_wq5nm")
+region = Rect2(0, 0, 64, 128)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_8plwt"]
+atlas = ExtResource("2_wq5nm")
+region = Rect2(64, 0, 64, 128)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_0cb3c"]
+atlas = ExtResource("2_wq5nm")
+region = Rect2(128, 0, 64, 128)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_aewex"]
+atlas = ExtResource("2_wq5nm")
+region = Rect2(192, 0, 64, 128)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_quseb"]
+atlas = ExtResource("2_wq5nm")
+region = Rect2(256, 0, 64, 128)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_x8f3p"]
+atlas = ExtResource("2_wq5nm")
+region = Rect2(320, 0, 64, 128)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_yk24i"]
+atlas = ExtResource("2_wq5nm")
+region = Rect2(384, 0, 64, 128)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_v0i2q"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_m53ni")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_8plwt")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_0cb3c")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_aewex")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_quseb")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_x8f3p")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_yk24i")
+}, {
+"duration": 1.0,
+"texture": null
+}],
+"loop": false,
+"name": &"MoveUp",
+"speed": 5.0
+}]
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_835kw"]
+atlas = ExtResource("3_b11ja")
+region = Rect2(0, 0, 64, 128)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_jwwju"]
+atlas = ExtResource("3_b11ja")
+region = Rect2(64, 0, 64, 128)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_nyk8j"]
+atlas = ExtResource("3_b11ja")
+region = Rect2(128, 0, 64, 128)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_bo0n3"]
+atlas = ExtResource("3_b11ja")
+region = Rect2(192, 0, 64, 128)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_ewaqg"]
+atlas = ExtResource("3_b11ja")
+region = Rect2(256, 0, 64, 128)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_k4ie2"]
+atlas = ExtResource("3_b11ja")
+region = Rect2(320, 0, 64, 128)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_om3s6"]
+atlas = ExtResource("3_b11ja")
+region = Rect2(384, 0, 64, 128)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_nlmt0"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_835kw")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_jwwju")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_nyk8j")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_bo0n3")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_ewaqg")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_k4ie2")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_om3s6")
+}, {
+"duration": 1.0,
+"texture": null
+}],
+"loop": false,
+"name": &"default",
+"speed": 5.0
+}]
+
+[sub_resource type="CanvasItemMaterial" id="CanvasItemMaterial_1c6lx"]
+particles_animation = true
+particles_anim_h_frames = 7
+particles_anim_v_frames = 1
+particles_anim_loop = false
+
+[node name="LittleGuy" type="Node2D"]
+script = ExtResource("2_7lc4u")
+
+[node name="PerfectArea" type="Area2D" parent="." groups=["player"]]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="PerfectArea"]
+position = Vector2(4, 0)
+scale = Vector2(2, 2)
+shape = SubResource("RectangleShape2D_rg7iu")
+
+[node name="GoodArea" type="Area2D" parent="." groups=["player"]]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="GoodArea"]
+position = Vector2(16, -1.05873e-05)
+rotation = -0.0056359
+scale = Vector2(2, 2)
+shape = SubResource("RectangleShape2D_55h0i")
+
+[node name="OkayArea" type="Area2D" parent="." groups=["player"]]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="OkayArea"]
+position = Vector2(28, 0)
+scale = Vector2(2, 2)
+shape = SubResource("RectangleShape2D_36ras")
+
+[node name="TPUp" type="AnimatedSprite2D" parent="."]
+position = Vector2(0, 64)
+scale = Vector2(1.75, 1.75)
+sprite_frames = SubResource("SpriteFrames_v0i2q")
+animation = &"MoveUp"
+frame = 7
+frame_progress = 1.0
+speed_scale = 10.0
+
+[node name="TPDown" type="AnimatedSprite2D" parent="."]
+position = Vector2(0, -64)
+scale = Vector2(1.75, 1.75)
+sprite_frames = SubResource("SpriteFrames_nlmt0")
+frame = 7
+frame_progress = 1.0
+speed_scale = 10.0
+
+[node name="HoldParticles" type="CPUParticles2D" parent="."]
+z_index = 10
+material = SubResource("CanvasItemMaterial_1c6lx")
+emitting = false
+amount = 16
+randomness = 0.5
+texture = ExtResource("4_mtj67")
+emission_shape = 3
+emission_rect_extents = Vector2(32, 32)
+direction = Vector2(50, 0)
+gravity = Vector2(-200, 0)
+initial_velocity_min = 100.0
+initial_velocity_max = 100.0
+angular_velocity_min = 29.09
+angular_velocity_max = 145.45
+scale_amount_min = 0.13
+scale_amount_max = 0.75
+color = Color(1, 0.886275, 0, 1)
+anim_speed_min = 1.0
+anim_speed_max = 1.0
+
+[node name="Timer" type="Timer" parent="."]
+
+[node name="RayCast2D" type="RayCast2D" parent="."]
+position = Vector2(0, 32)
+enabled = false
+target_position = Vector2(0, 296)
+collision_mask = 512
+collide_with_areas = true
+
+[node name="Polygon2D" type="Polygon2D" parent="."]
+color = Color(0.6, 0.109804, 0.721569, 1)
+polygon = PackedVector2Array(-24, -24, -24, 24, 24, 24, 24, -24)
+
+[node name="Polygon2D" type="Polygon2D" parent="Polygon2D"]
+color = Color(0.788235, 0.298039, 0.92549, 1)
+polygon = PackedVector2Array(-32, -24, -24, -32, 24, -32, 32, -24, 32, 24, 24, 32, -24, 32, -32, 24, -32, -24, -24, -24, -24, 24, 24, 24, 24, -24, -24, -24)
+
+[connection signal="held_all_the_way" from="." to="." method="_on_held_all_the_way"]
+[connection signal="not_held_all_the_way" from="." to="." method="_on_not_held_all_the_way"]
+[connection signal="area_entered" from="PerfectArea" to="." method="_on_PerfectArea_entered"]
+[connection signal="area_exited" from="PerfectArea" to="." method="_on_PerfectArea_exited"]
+[connection signal="area_entered" from="GoodArea" to="." method="_on_GoodArea_entered"]
+[connection signal="area_exited" from="GoodArea" to="." method="_on_GoodArea_exited"]
+[connection signal="area_entered" from="OkayArea" to="." method="_on_OkayArea_entered"]
+[connection signal="area_exited" from="OkayArea" to="." method="_on_OkayArea_exited"]

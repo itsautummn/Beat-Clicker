@@ -1,0 +1,15 @@
+[remap]
+
+importer="com.nlaha.godotmidi"
+type="MidiResource"
+uid="uid://cootm7w84nmoy"
+path="res://.godot/imported/Vermid.mid-df3da94d64b4fb70a53fe6da39193f1d.res"
+
+[deps]
+
+source_file="res://Charts/Vermid.mid"
+dest_files=["res://.godot/imported/Vermid.mid-df3da94d64b4fb70a53fe6da39193f1d.res"]
+
+[params]
+
+only_notes=false

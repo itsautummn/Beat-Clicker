@@ -1,0 +1,6 @@
+[gd_scene load_steps=2 format=3 uid="uid://bxc03lgwrk20k"]
+
+[ext_resource type="Script" path="res://Globals/GlobalVariables.gd" id="1_tu6d4"]
+
+[node name="PlayerScores" type="Node"]
+script = ExtResource("1_tu6d4")

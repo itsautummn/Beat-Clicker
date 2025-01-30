@@ -1,0 +1,147 @@
+[gd_scene load_steps=18 format=3 uid="uid://dcg7betw0vxll"]
+
+[ext_resource type="Script" path="res://Game/Game.gd" id="1_xxykj"]
+[ext_resource type="Script" path="res://Conductor.gd" id="2_stu5i"]
+[ext_resource type="Texture2D" uid="uid://ddqbnmpa02uyg" path="res://UNSORTED Sprites/Yellow-Arrow-Hit.png" id="3_pxmqq"]
+[ext_resource type="Texture2D" uid="uid://cwmh01yuhyo58" path="res://UNSORTED Sprites/Green-Arrow-Hit.png" id="4_sai1t"]
+[ext_resource type="Texture2D" uid="uid://44tckym6njrg" path="res://UNSORTED Sprites/Purple-Arrow-Hit.png" id="5_mxrbr"]
+[ext_resource type="Texture2D" uid="uid://bsuywi1js06oj" path="res://Player/Sword-User-Idle.png" id="6_l6b1o"]
+[ext_resource type="AudioStream" uid="uid://bu1h7ngysna5w" path="res://mii_theme.wav" id="7_uk4om"]
+[ext_resource type="PackedScene" uid="uid://blnrr3yxqwio4" path="res://ArrowButton/Arrow.tscn" id="8_m2ib3"]
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_4h1vj"]
+atlas = ExtResource("6_l6b1o")
+region = Rect2(0, 0, 64, 64)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_qpvqp"]
+atlas = ExtResource("6_l6b1o")
+region = Rect2(64, 0, 64, 64)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_11p3d"]
+atlas = ExtResource("6_l6b1o")
+region = Rect2(128, 0, 64, 64)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_6pscr"]
+atlas = ExtResource("6_l6b1o")
+region = Rect2(192, 0, 64, 64)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_l6yft"]
+atlas = ExtResource("6_l6b1o")
+region = Rect2(256, 0, 64, 64)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_1fmdw"]
+atlas = ExtResource("6_l6b1o")
+region = Rect2(320, 0, 64, 64)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_isw2p"]
+atlas = ExtResource("6_l6b1o")
+region = Rect2(384, 0, 64, 64)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_lp4ln"]
+atlas = ExtResource("6_l6b1o")
+region = Rect2(448, 0, 64, 64)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_tufdp"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_4h1vj")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_qpvqp")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_11p3d")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_6pscr")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_l6yft")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_1fmdw")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_isw2p")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_lp4ln")
+}],
+"loop": true,
+"name": &"BluePlayerIdle",
+"speed": 5.0
+}]
+
+[node name="Game" type="Node2D"]
+script = ExtResource("1_xxykj")
+
+[node name="MidiPlayer" type="Node2D" parent="."]
+
+[node name="SONGS MIDI FILE" type="Sprite2D" parent="."]
+
+[node name="Lane" type="Sprite2D" parent="."]
+
+[node name="GreenArrow" parent="." instance=ExtResource("8_m2ib3")]
+position = Vector2(450, 450)
+texture = ExtResource("4_sai1t")
+input = "Left"
+
+[node name="YellowArrow" parent="." instance=ExtResource("8_m2ib3")]
+position = Vector2(550, 450)
+texture = ExtResource("3_pxmqq")
+offset = Vector2(1, 0)
+input = "Down"
+
+[node name="BlueArrow" parent="." instance=ExtResource("8_m2ib3")]
+position = Vector2(650, 450)
+input = "Up"
+
+[node name="PurpleArrow" parent="." instance=ExtResource("8_m2ib3")]
+position = Vector2(750, 450)
+texture = ExtResource("5_mxrbr")
+input = "Right"
+
+[node name="BluePlayer" type="AnimatedSprite2D" parent="."]
+position = Vector2(606, 520)
+scale = Vector2(4, 4)
+sprite_frames = SubResource("SpriteFrames_tufdp")
+animation = &"BluePlayerIdle"
+frame_progress = 0.0834283
+
+[node name="Label" type="Label" parent="."]
+anchors_preset = 7
+anchor_left = 0.5
+anchor_top = 1.0
+anchor_right = 0.5
+anchor_bottom = 1.0
+offset_left = 847.0
+offset_top = 302.0
+offset_right = 898.0
+offset_bottom = 325.0
+grow_horizontal = 2
+grow_vertical = 0
+rotation = 0.111701
+scale = Vector2(3, 3)
+size_flags_horizontal = 4
+size_flags_vertical = 8
+text = "COMBO:"
+
+[node name="Combo" type="Label" parent="."]
+offset_left = 876.0
+offset_top = 379.0
+offset_right = 916.0
+offset_bottom = 402.0
+rotation = 0.122497
+scale = Vector2(1.60506, 1.9394)
+
+[node name="Conductor" type="AudioStreamPlayer2D" parent="."]
+stream = ExtResource("7_uk4om")
+script = ExtResource("2_stu5i")
+bpm = 116
+
+[node name="StartTimer" type="Timer" parent="Conductor"]
+
+[connection signal="beat_sig" from="Conductor" to="." method="_on_Conductor_beat"]
+[connection signal="measure_sig" from="Conductor" to="." method="_on_Conductor_measure"]
+[connection signal="timeout" from="Conductor/StartTimer" to="Conductor" method="_on_StartTimer_timeout"]

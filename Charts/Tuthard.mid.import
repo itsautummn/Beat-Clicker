@@ -1,0 +1,15 @@
+[remap]
+
+importer="com.nlaha.godotmidi"
+type="MidiResource"
+uid="uid://cj15mxc4ael31"
+path="res://.godot/imported/Tuthard.mid-5b8ff03e428d523ee6ba2a7645c7d212.res"
+
+[deps]
+
+source_file="res://Charts/Tuthard.mid"
+dest_files=["res://.godot/imported/Tuthard.mid-5b8ff03e428d523ee6ba2a7645c7d212.res"]
+
+[params]
+
+only_notes=false

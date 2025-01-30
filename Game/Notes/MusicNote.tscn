@@ -1,0 +1,57 @@
+[gd_scene load_steps=5 format=3 uid="uid://cy8hmv5qndxs4"]
+
+[ext_resource type="Script" path="res://Game/Notes/MusicNote.gd" id="1_phgye"]
+[ext_resource type="Texture2D" uid="uid://5lf22hd8i7s3" path="res://Game/Player/Perf-Particles.png" id="3_mum67"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_xcf7k"]
+size = Vector2(48, 40)
+
+[sub_resource type="CanvasItemMaterial" id="CanvasItemMaterial_n07a8"]
+particles_animation = true
+particles_anim_h_frames = 7
+particles_anim_v_frames = 1
+particles_anim_loop = false
+
+[node name="MusicNote" type="Area2D" groups=["regular note"]]
+script = ExtResource("1_phgye")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+position = Vector2(0, -4)
+shape = SubResource("RectangleShape2D_xcf7k")
+
+[node name="Shape" type="Node2D" parent="."]
+
+[node name="Polygon2D" type="Polygon2D" parent="Shape"]
+position = Vector2(-24, -24)
+color = Color(0.509804, 0.172549, 0.215686, 1)
+polygon = PackedVector2Array(28, 0, 12, 0, 0, 12, 0, 40, 28, 40, 40, 28, 40, 12, 56, -64, 40, -64)
+
+[node name="Outline" type="Polygon2D" parent="Shape"]
+color = Color(0.796078, 0, 0.231373, 1)
+polygon = PackedVector2Array(-24, -12, -12, -24, 4, -24, 0, -20, -12, -20, -20, -12, -20, 12, 4, 12, 12, 4, 12, -12, 28, -84, 16, -84, 4, -24, 0, -24, 12, -88, 32, -88, 16, -8, 16, 4, 4, 16, -24, 16)
+
+[node name="Timer" type="Timer" parent="."]
+one_shot = true
+
+[node name="HitParticles" type="CPUParticles2D" parent="."]
+z_index = 10
+material = SubResource("CanvasItemMaterial_n07a8")
+emitting = false
+lifetime = 0.5
+one_shot = true
+explosiveness = 1.0
+randomness = 1.0
+texture = ExtResource("3_mum67")
+emission_shape = 3
+emission_rect_extents = Vector2(32, 32)
+direction = Vector2(0, 0)
+gravity = Vector2(400, 0)
+initial_velocity_min = 100.0
+initial_velocity_max = 100.0
+scale_amount_min = 0.13
+scale_amount_max = 0.75
+color = Color(1, 0.886275, 0, 1)
+anim_speed_min = 2.0
+anim_speed_max = 2.0
+
+[connection signal="timeout" from="Timer" to="." method="_on_timer_timeout"]

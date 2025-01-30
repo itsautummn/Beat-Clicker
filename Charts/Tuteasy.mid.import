@@ -1,0 +1,15 @@
+[remap]
+
+importer="com.nlaha.godotmidi"
+type="MidiResource"
+uid="uid://b3fax5r7846w3"
+path="res://.godot/imported/Tuteasy.mid-e3360b0d80f728a3f9b6d1a7d5dbfb02.res"
+
+[deps]
+
+source_file="res://Charts/Tuteasy.mid"
+dest_files=["res://.godot/imported/Tuteasy.mid-e3360b0d80f728a3f9b6d1a7d5dbfb02.res"]
+
+[params]
+
+only_notes=false

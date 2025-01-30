@@ -1,0 +1,15 @@
+[remap]
+
+importer="com.nlaha.godotmidi"
+type="MidiResource"
+uid="uid://biseqf72bqnl4"
+path="res://.godot/imported/Vertotal.mid-a1fb8497653db9637abb70d525e9dd77.res"
+
+[deps]
+
+source_file="res://Charts/Vertotal.mid"
+dest_files=["res://.godot/imported/Vertotal.mid-a1fb8497653db9637abb70d525e9dd77.res"]
+
+[params]
+
+only_notes=false
