@@ -1,6 +1,8 @@
-# Beat-Clicker
-Beat Clicker is a game made for the 2024 Rhythm Game Jam 
-This upload is much in the future from the release of the game, but I wanted to provide an upload as a record of sorts
+<h1>Github Addition</h1>
+Beat Clicker is a game made for the 2024 Rhythm Game Jam!
+This upload is much in the future from the release of the game, but I wanted to provide an upload as a record of sorts and forgot about doing that up until right now.
+<h2>How To Download</h1>
+
 
 <h2>Beat Clicker (Rhythm Jam 2024)</h2>
 <p>Beat Clicker is my first game ever completed, as well as my first game jam ever participated in!</p>
